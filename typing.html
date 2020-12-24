@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<!-- 翻訳機能をなくしたい -->
+<html lang="jp">  
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="GENERATOR" content="UTF-8 Writer">
+  <title>10文字タイピングゲーム</title>
+  <script src="./typing.js"></script>
+  <link rel="stylesheet" href="./typing.css" type="text/css"> 
+</head>
+<body onload="gameSet()">
+  <h1 id="title">10文字タイピング</h1>
+  <p>下の文字を入力してください。</p>
+  <div id="waku"></div> 
+  <button type="retryButton" onclick="gameSet()">RETRY</button>
+
+  <!-- record_boxの中に記録した時間を表示したい -->
+  <div id="record_box">記録
+    <p id="test1"></p>
+  </div>
+
+</body>
+
+</html>

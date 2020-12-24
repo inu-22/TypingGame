@@ -1,0 +1,54 @@
+body {
+    background-color: rgb(228, 226, 222);
+    color: black;
+    text-align: center;
+}
+h1#title {
+    font-size:40px;
+    /* background-color: rgb(250, 145, 145);  */
+}
+div#waku {
+    background-color:white;
+    border:6px double  rgb(228, 226, 222);
+    width: 300px; /* 横幅 */
+    height:100px; /* 縦幅 */
+    line-height: 100px;
+    font-size:20px;
+    margin: 10px auto; /* 枠を中央寄せ */
+    overflow:auto;
+    
+}
+/* retryButton限定にしたい */
+button {
+    /* ブラウザ特有のスタイルを無効に */
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+
+    /* 整える */
+    margin: 1em 13em; /* 前後の隙間 */
+    padding: 1em 1em; /* 塗りの余白 */
+    font-size: 1em; /* フォントサイズ */
+    background-color: rgb(126, 116, 101); /* 背景色 */
+    color: #FFF; /* テキストカラー */
+    cursor: pointer; /* カーソルを指マークに */
+    border-radius: 3px; /* 角の丸み */
+    border: 0; /* 枠線を消す */
+    transition: 0.3s; /* ホバーの変化を滑らかに */
+    outline: none /* ボタンクリック時の枠線を消す(何回もきれいに押したい） */
+}
+/* ホバー時（カーソルをのせた時）の見た目 */
+button:hover {
+    background-color: rgb(0, 107, 64); /* 背景色 */
+}
+div#record_box {
+    background-color: white;
+    width: 300px;
+    height:400px;
+    color: rgb(6, 0, 27);
+    line-height: 3em;
+    margin: 10px auto; /* 枠を中央寄せ */
+    overflow:auto;
+    border-radius: 3px; /* 角の丸み */
+
+}
