@@ -14,33 +14,31 @@ var kcode = new Array(65,66,67,68,69,70,71,72,73,
 var rnd = new Array();
 
 //グローバル変数群
-var mondai = "";       //問題の文字列を格納
-var cnt_question=0;             //何問目か格納
-var cnt_game=0;
-// var record_time=0;
-var typStart,typEnd;   //開始時と終了時の時刻を格納
+var mondai = ""; /*問題の文字列を格納*/
+var cnt_question = 0; /* 何問目か格納 */
+var cnt_game = 0; /* 何回目か格納 */
+var typStart,typEnd;   /* 開始時と終了時の時刻を格納 */
 
 //0～25までの乱数を10個作成して配列rndに格納する関数
 function ransu() {
-  for ( var i = 0 ; i < 10 ; i++ ) {
+  for (var i = 0; i < 10; i++) {
     rnd[i] = Math.floor( Math.random() * 26 );
   }
 }
 
 //タイピングゲームの問題をセットする関数
-function gameSet()
-{
+function gameSet() {
   //問題文とカウント数をクリアする
-  mondai="";
-  cnt_question=0;
+  mondai = "";
+  cnt_question = 0;
   //gameの総回数を数える
-  cnt_game+=1;
+  cnt_game += 1;
   //乱数作成関数の呼び出し
   ransu();
   
   //問題文の作成（配列alphabetの要素をランダムに10文字繋げる）
   //mondai= "" + alphabet[rnd[0]] + alphabet[rnd[1]] + … + alphabet[rnd[9]]となる
-  for ( var i = 0 ; i < 10 ; i++) {
+  for (var i = 0; i < 10; i++) {
     mondai =  mondai + alphabet[ rnd[i] ];
   }
   
@@ -50,43 +48,34 @@ function gameSet()
 
 
 //キー入力を受け取る関数
-function typeGame(evt)
-{
+function typeGame(evt) {
   var kc;  //入力されたキーコードを格納する変数
   
   //入力されたキーのキーコードを取得
-  if (document)
-  {
+  if (document)　{
     kc = event.keyCode;
-  }
-  else
-  {
+  }　else　{
     kc = evt.which;
   }
   //入力されたキーコードと、問題文のキーコードを比較
-  if (kc == kcode[ rnd[cnt_question] ])
-  {
+  if (kc == kcode[ rnd[cnt_question] ])　{
     //以下、キーコードが一致した時の処理
 
     //最初の1文字が入力された時間を記録する
-    if (cnt_question==0)
-    { 
+    if (cnt_question==0)　{ 
       typStart = new Date();
     }
     
     cnt_question++; //カウント数を＋１にする
     
     //全文字入力したか確認
-    if ( cnt_question < 10)
-    {
+    if (cnt_question < 10)　{
       //問題文の頭の一文字を切り取る
       mondai = mondai.substring(1,mondai.Length);
       
       //問題枠に表示する
       document.getElementById("waku").innerHTML = mondai;
-    }
-    else
-    {
+    }　else　{
       //全文字入力していたら、終了時間を記録する
       typEnd = new Date();
       
@@ -100,12 +89,12 @@ function typeGame(evt)
       var msec = keika % 1000;
       
       //問題終了を告げる文字列を作成
-      var time="時間："+sec+"秒"+msec;
+      var time = "時間：" + sec + "秒" + msec;
       
       //問題枠にゲーム終了を表示
       document.getElementById("waku").innerHTML = time;
       if (sec > 5) {
-        document.getElementById("waku").innerHTML = "遅いですねえ "+time;
+        document.getElementById("waku").innerHTML = "遅いですねえ " + time;
         /* 　記録した時間をrecord_box内に追加して表示したい。けどできない。
         var text1 = document.createElement("test1"); 
         text1.innerHTML = time;
@@ -114,9 +103,9 @@ function typeGame(evt)
         x.insertBefore(text1, y);
         */
       } else if (sec > 3) {
-        document.getElementById("waku").innerHTML = "はや！！"+time;
+        document.getElementById("waku").innerHTML = "はや！！" + time;
       } else {
-        document.getElementById("waku").innerHTML = "あなたは神です"+time;
+        document.getElementById("waku").innerHTML = "あなたは神です" + time;
       }
     }
   }

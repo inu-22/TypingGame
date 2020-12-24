@@ -3,11 +3,11 @@ body {
     color: black;
     text-align: center;
 }
-h1#title {
+#title {
     font-size:40px;
     /* background-color: rgb(250, 145, 145);  */
 }
-div#waku {
+#waku {
     background-color:white;
     border:6px double  rgb(228, 226, 222);
     width: 300px; /* 横幅 */
