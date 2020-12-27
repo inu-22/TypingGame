@@ -2,21 +2,23 @@ document.onkeydown = typeGame;  //キー押下時に関数typeGame()を呼び出
 
 //文字を格納する配列
 var alphabet = new Array("Ａ","Ｂ","Ｃ","Ｄ","Ｅ","Ｆ","Ｇ","Ｈ","Ｉ",
-                        "Ｊ","Ｋ","Ｌ","Ｍ","Ｎ","Ｏ","Ｐ","Ｑ","Ｒ",
-                        "Ｓ","Ｔ","Ｕ","Ｖ","Ｗ","Ｘ","Ｙ","Ｚ");
+"Ｊ","Ｋ","Ｌ","Ｍ","Ｎ","Ｏ","Ｐ","Ｑ","Ｒ",
+"Ｓ","Ｔ","Ｕ","Ｖ","Ｗ","Ｘ","Ｙ","Ｚ");
 
 //キーコードを格納する配列
 var kcode = new Array(65,66,67,68,69,70,71,72,73,
-                      74,75,76,77,78,79,80,81,82,
-                      83,84,85,86,87,88,89,90);
-
-//0～25までの乱数を格納する配列
-var rnd = new Array();
+  74,75,76,77,78,79,80,81,82,
+  83,84,85,86,87,88,89,90);
+  
+  //0～25までの乱数を格納する配列
+  var rnd = new Array();
+  // それぞれの時間を格納する配列
+  var recTime = new Array();
 
 //グローバル変数群
 var mondai = ""; /*問題の文字列を格納*/
 var cnt_question = 0; /* 何問目か格納 */
-var cnt_game = 0; /* 何回目か格納 */
+var cnt_game = 0; /* 何回目の挑戦か格納 */
 var typStart,typEnd;   /* 開始時と終了時の時刻を格納 */
 
 //0～25までの乱数を10個作成して配列rndに格納する関数
@@ -31,8 +33,6 @@ function gameSet() {
   //問題文とカウント数をクリアする
   mondai = "";
   cnt_question = 0;
-  //gameの総回数を数える
-  cnt_game += 1;
   //乱数作成関数の呼び出し
   ransu();
   
@@ -46,11 +46,9 @@ function gameSet() {
   document.getElementById("waku").innerHTML = mondai;
 }
 
-
 //キー入力を受け取る関数
 function typeGame(evt) {
   var kc;  //入力されたキーコードを格納する変数
-  
   //入力されたキーのキーコードを取得
   if (document)　{
     kc = event.keyCode;
@@ -78,6 +76,8 @@ function typeGame(evt) {
     }　else　{
       //全文字入力していたら、終了時間を記録する
       typEnd = new Date();
+      //全文字入力していたら、総挑戦数を記録する
+      cnt_game++;
       
       //終了時間－開始時間で掛かったミリ秒を取得する
       var keika = typEnd - typStart;
@@ -89,36 +89,20 @@ function typeGame(evt) {
       var msec = keika % 1000;
       
       //問題終了を告げる文字列を作成
-      var time = "時間：" + sec + "秒" + msec;
-      
+      var time1 = "時間：" + sec + "秒" + msec;
       //問題枠にゲーム終了を表示
-      document.getElementById("waku").innerHTML = time;
+      document.getElementById("waku").innerHTML = time1;
       if (sec > 5) {
-        document.getElementById("waku").innerHTML = "遅いですねえ " + time;
-        /* 　記録した時間をrecord_box内に追加して表示したい。けどできない。
-        var text1 = document.createElement("test1"); 
-        text1.innerHTML = time;
-        var x = document.getElementById("test2");
-        var y = x.getElementsByTagName("p")[1];
-        x.insertBefore(text1, y);
-        */
+        document.getElementById("waku").innerHTML = "遅いですねえ " + time1;
       } else if (sec > 3) {
-        document.getElementById("waku").innerHTML = "はや！！" + time;
+        document.getElementById("waku").innerHTML = "はやい！！" + time1;
       } else {
-        document.getElementById("waku").innerHTML = "あなたは神です" + time;
+        document.getElementById("waku").innerHTML = "あなたは神です" + time1;
       }
+      // record_boxにこれまでの記録時間を表示する
+      var time2 = "第" + cnt_game + "回" + sec + "秒" + msec;
+      recTime[cnt_game - 1] = "<li>"+ time2+"</li>";
+      document.getElementById("element").innerHTML = recTime.join("");
     }
   }
-} 
-
-//record_box内に計測時間を追加する（未完成）
-function add_time() {
-  var x = document.getElementById("test1");
-  x.innerHTML = "文章";
-  // const p1 = document.createElement("record_box");
-  // const text1 = document.createTextNode("テスト");
-  // p1.appendChild(text1);
-  // div1.appendChild(p1);
-  // record_box.innerHTML = "第"+cnt_game+"回　"+time;
-  
 }
