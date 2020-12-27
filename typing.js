@@ -93,11 +93,12 @@ function typeGame(evt) {
       //問題枠にゲーム終了を表示
       document.getElementById("waku").innerHTML = time1;
       if (sec > 5) {
-        document.getElementById("waku").innerHTML = "遅いですねえ " + time1;
+        document.getElementById("waku").innerHTML = "遅いですねえ " + time1;	
       } else if (sec > 3) {
         document.getElementById("waku").innerHTML = "はやい！！" + time1;
       } else {
         document.getElementById("waku").innerHTML = "あなたは神です" + time1;
+        msec+="👑"/* 記録の最後に絵文字つけたい　*/
       }
       // record_boxにこれまでの記録時間を表示する
       var time2 = "第" + cnt_game + "回" + sec + "秒" + msec;

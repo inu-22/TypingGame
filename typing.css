@@ -24,28 +24,34 @@ button {
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
-
     /* 整える */
-    margin: 1em 13em; /* 前後の隙間 */
-    padding: 1em 1em; /* 塗りの余白 */
-    font-size: 1em; /* フォントサイズ */
-    background-color: rgb(126, 116, 101); /* 背景色 */
-    color: #FFF; /* テキストカラー */
-    cursor: pointer; /* カーソルを指マークに */
-    border-radius: 3px; /* 角の丸み */
-    border: 0; /* 枠線を消す */
-    transition: 0.3s; /* ホバーの変化を滑らかに */
-    outline: none /* ボタンクリック時の枠線を消す(何回もきれいに押したい） */
+    border: 0; /* 枠線を消す*/
+    display: inline-block;
+    padding: 1em 1em;
+    text-decoration: none;
+    background: rgb(126, 116, 101);;/*ボタン色*/
+    color: #FFF;
+    border-bottom: solid 4px rgb(104, 96, 84);
+    border-radius: 4px;
+    cursor: pointer; /* カーソルを指マークに*/
+    outline: none /*ボタンクリック時の枠線を消す(何回もきれいに押したい） */
 }
 /* ホバー時（カーソルをのせた時）の見た目 */
 button:hover {
     background-color: rgb(0, 107, 64); /* 背景色 */
+    border-bottom: solid 4px rgb(18, 80, 55);
+}
+/*ボタンを押したとき*/
+button:active {
+    -webkit-transform: translateY(1px);
+    transform: translateY(4px);/*下に動く*/
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);/*影を小さく*/
+    border-bottom: none;
 }
 div#record_box {
     background-color: white;
     width: 300px;
     height:400px;
-    color: rgb(6, 0, 27);
     font-size: 20px;
     line-height: 3em;
     margin: 10px auto; /* 枠を中央寄せ */
