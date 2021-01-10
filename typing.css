@@ -1,22 +1,28 @@
 body {
+    font-size:20px;
     background-color: rgb(228, 226, 222);
-    color: rgb(0, 54, 33);
+    color:  rgb(70, 65, 57);
     text-align: center;
 }
 #title {
     font-size:40px;
-    color:  rgb(0, 54, 33);
+    color:  rgb(37, 34, 29);
 }
 #waku {
     background-color:white;
     border:6px double  rgb(228, 226, 222);
-    width: 300px; /* 横幅 */
-    height:100px; /* 縦幅 */
-    line-height: 100px;
-    font-size:20px;
-    margin: 10px auto; /* 枠を中央寄せ */
-    overflow:auto;
-    
+    width: 500px; /* 横幅 */
+    height:200px; /* 縦幅 */
+    margin: 10px auto; /*枠を中央寄せ*/
+    overflow: auto;
+}
+#mondai {
+    font-size:30px;
+    color: rgb(126, 116, 101);
+}
+#result {
+    font-size:15px;
+    color: rgb(126, 116, 101);
 }
 /* retryButton限定にしたい */
 button {
@@ -27,40 +33,41 @@ button {
     /* 整える */
     border: 0; /* 枠線を消す*/
     display: inline-block;
-    padding: 1em 1em;
+    font-size: 18px;
+    padding: 1em;
+    margin: 2em;
     text-decoration: none;
-    background: rgb(126, 116, 101);;/*ボタン色*/
+    background: rgb(126, 116, 101);/*ボタン色*/
     color: #FFF;
-    border-bottom: solid 4px rgb(104, 96, 84);
-    border-radius: 4px;
+    border-bottom: solid 3px rgb(102, 98, 91);
+    border-radius: 2px;
     cursor: pointer; /* カーソルを指マークに*/
     outline: none /*ボタンクリック時の枠線を消す(何回もきれいに押したい） */
 }
 /* ホバー時（カーソルをのせた時）の見た目 */
 button:hover {
     background-color: rgb(0, 107, 64); /* 背景色 */
-    border-bottom: solid 4px rgb(18, 80, 55);
+    border-bottom: solid 3px rgb(18, 80, 55);
 }
 /*ボタンを押したとき*/
 button:active {
     -webkit-transform: translateY(1px);
-    transform: translateY(4px);/*下に動く*/
+    transform: translateY(3px);/*下に動く*/
     box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.2);/*影を小さく*/
-    border-bottom: none;
+    border-bottom: solid 3px rgb(0, 107, 64);
 }
-div#record_box {
+#record_box {
     background-color: white;
-    width: 300px;
+    width: 500px;
     height:400px;
     font-size: 20px;
+    color:  rgb(126, 116, 101);
     line-height: 3em;
     margin: 10px auto; /* 枠を中央寄せ */
     overflow:auto;
     border-radius: 3px; /* 角の丸み */
-
 }
-li{
-    font-size: 15px;
+#element {
+    font-size: 20px;
     line-height: 2em;
-    list-style: none;    
 }

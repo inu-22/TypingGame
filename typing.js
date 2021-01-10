@@ -14,12 +14,13 @@ var kcode = new Array(65,66,67,68,69,70,71,72,73,
   var rnd = new Array();
   // それぞれの時間を格納する配列
   var recTime = new Array();
-
-//グローバル変数群
-var mondai = ""; /*問題の文字列を格納*/
-var cnt_question = 0; /* 何問目か格納 */
-var cnt_game = 0; /* 何回目の挑戦か格納 */
-var typStart,typEnd;   /* 開始時と終了時の時刻を格納 */
+  
+  //グローバル変数群
+  var mondai = ""; /*問題の文字列を格納*/
+  var cnt_question = 0; /* 何問目か格納 */
+  var cnt_game = 0; /* 何回目の挑戦か格納 */
+  var typStart,typEnd;   /* 開始時と終了時の時刻を格納 */
+  var cnt_miss = 0; /* タイプミスの回数を数える変数 */
 
 //0～25までの乱数を10個作成して配列rndに格納する関数
 function ransu() {
@@ -43,7 +44,7 @@ function gameSet() {
   }
   
   //問題枠に表示する
-  document.getElementById("waku").innerHTML = mondai;
+  document.getElementById("mondai").innerHTML = mondai;
 }
 
 //キー入力を受け取る関数
@@ -57,10 +58,9 @@ function typeGame(evt) {
   }
   //入力されたキーコードと、問題文のキーコードを比較
   if (kc == kcode[ rnd[cnt_question] ])　{
-    //以下、キーコードが一致した時の処理
-
+    //以下、キーコードが一致した時の処理    
     //最初の1文字が入力された時間を記録する
-    if (cnt_question==0)　{ 
+    if (cnt_question == 0)　{ 
       typStart = new Date();
     }
     
@@ -70,9 +70,9 @@ function typeGame(evt) {
     if (cnt_question < 10)　{
       //問題文の頭の一文字を切り取る
       mondai = mondai.substring(1,mondai.Length);
-      
+
       //問題枠に表示する
-      document.getElementById("waku").innerHTML = mondai;
+      document.getElementById("mondai").innerHTML = mondai;
     }　else　{
       //全文字入力していたら、終了時間を記録する
       typEnd = new Date();
@@ -90,20 +90,23 @@ function typeGame(evt) {
       
       //問題終了を告げる文字列を作成
       var time1 = "時間：" + sec + "秒" + msec;
-      //問題枠にゲーム終了を表示
-      document.getElementById("waku").innerHTML = time1;
+      //問題枠にゲーム終了コメントを表示
       if (sec > 5) {
-        document.getElementById("waku").innerHTML = "遅いですねえ " + time1;	
+        document.getElementById("mondai").innerHTML = "遅いですねえ";	
       } else if (sec > 3) {
-        document.getElementById("waku").innerHTML = "はやい！！" + time1;
+        document.getElementById("mondai").innerHTML = "はやい！！";
       } else {
-        document.getElementById("waku").innerHTML = "あなたは神です" + time1;
-        msec+="👑"/* 記録の最後に絵文字つけたい　*/
+        document.getElementById("mondai").innerHTML = "あなたは神です👼";
+        msec += "✨";/* 神記録の最後に絵文字つけたい　*/
       }
+      // 時間とタイプミス回数を表示する
+      document.getElementById("result").innerHTML = "<br>\n"+ time1 + "<br>\n" + "タイプミス："+ cnt_miss;
       // record_boxにこれまでの記録時間を表示する
-      var time2 = "第" + cnt_game + "回" + sec + "秒" + msec;
-      recTime[cnt_game - 1] = "<li>"+ time2+"</li>";
-      document.getElementById("element").innerHTML = recTime.join("");
+      document.getElementById("element").innerHTML += "第" + cnt_game + "回 " + sec + "秒" + msec +  "<br>\n";
+      // タイプミスの回数を初期値に戻す
+      cnt_miss = 0;
     }
+  } else {
+    cnt_miss++;
   }
 }
