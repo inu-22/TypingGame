@@ -15,13 +15,15 @@ var rnd = new Array();
 var recTime = new Array();
   
 //グローバル変数群
-var mondai = ""; /*問題の文字列を格納*/
-var mondai1 = ""; /*問題の文字列を格納*/
+var quiz = ""; /*問題の文字列を格納*/
+var quizJpn = ""; /*日本語の問題の文字列を格納*/
 var kcodelist = []; /* 問題のkcodeを格納する配列 */
 var cnt_question = 0; /* 何問目か格納 */
 var cnt_game = 0; /* 何回目の挑戦か格納 */
-var typStart,typEnd;   /* 開始時と終了時の時刻を格納 */
 var cnt_miss = 0; /* タイプミスの回数を数える変数 */
+var typStart,typEnd;   /* 開始時と終了時の時刻を格納 */
+var jpnIndex = ""; /* 選ばれた問題に対応する日本語を格納する変数 */
+var arrLength = 0; 	/*　問題の配列長を格納する変数 */
 
 
 //はじめにkclistの中身を空っぽにし、受け取った配列のキーコードをkclistに格納する関数
@@ -37,7 +39,12 @@ function getkc(moji) {
   num = alphabet.indexOf(moji);
   kcodelist.push(kcode[num]);  
 }  
-
+//受け取った配列かランダムに1つ選び、選んだ問題を返す関数。さらに添え字をjpnIndexに代入する。
+function chooseQuiz(arr) {
+	var arrIndex = Math.floor(Math.random() * arr.length);
+	jpnIndex = arrIndex; 
+	return arr[arrIndex];
+}
 //0～25までの乱数を10個作成して配列rndに格納する関数
 function ransu() {
   for (var i = 0; i < 10; i++) {
