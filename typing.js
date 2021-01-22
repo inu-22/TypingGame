@@ -17,18 +17,26 @@ var recTime = new Array();
 //グローバル変数群
 var mondai = ""; /*問題の文字列を格納*/
 var mondai1 = ""; /*問題の文字列を格納*/
+var kcodelist = []; /* 問題のkcodeを格納する配列 */
 var cnt_question = 0; /* 何問目か格納 */
 var cnt_game = 0; /* 何回目の挑戦か格納 */
 var typStart,typEnd;   /* 開始時と終了時の時刻を格納 */
 var cnt_miss = 0; /* タイプミスの回数を数える変数 */
-var kcodelist;
 
-//問題の文字と対応するkcodelistを生成する関数(indexOFなど関数の使い方間違えてるから調べなおす)
-function getkclist(mondai1) {
+
+//はじめにkclistの中身を空っぽにし、受け取った配列のキーコードをkclistに格納する関数
+function makekclist(quiz) {
+  kcodelist = [];
+  for(var i = 0; quiz[i] != null; i++) {
+		getkc(quiz[i]);
+	}    
+}    
+//検索する文字を受け取り、対応するアスキーコードをkicodelistにpushする関数
+function getkc(moji) {
   var num; //添え字
-  num = mondai.indexOf;
-　kcodelist.push = kcode[num];
-}
+  num = alphabet.indexOf(moji);
+  kcodelist.push(kcode[num]);  
+}  
 
 //0～25までの乱数を10個作成して配列rndに格納する関数
 function ransu() {
