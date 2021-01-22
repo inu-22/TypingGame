@@ -72,30 +72,24 @@ function gameSet() {
 
 //キー入力を受け取る関数
 function typeGame(evt) {
-  var kc;  //入力されたキーコードを格納する変数
-  //入力されたキーのキーコードを取得
-  if (document)　{
-    kc = event.keyCode;
-  }　else　{
-    kc = evt.which;
-  }
   //入力されたキーコードと、問題文のキーコードを比較
-  if (kc == kcode[ rnd[cnt_question] ])　{
+  if (event.keyCode == kcodelist[cnt_question])　{
     //以下、キーコードが一致した時の処理    
     //最初の1文字が入力された時間を記録する
     if (cnt_question == 0)　{ 
-      typStart = new Date();
+      typStart = new Date(); /*←これ何 */
     }
     
     cnt_question++; //カウント数を＋１にする
     
     //全文字入力したか確認
-    if (cnt_question < 10)　{
+    if (cnt_question < arrLength)　{
       //問題文の頭の一文字を切り取る
-      mondai = mondai.substring(1,mondai.Length);
+      quiz = quiz.substring(1,quiz.Length);
+      // quizJpn = quizJpn.substring(1,quiz.Length);
 
-      //問題枠に表示する
-      document.getElementById("mondai").innerHTML = mondai;
+			//問題枠に表示する
+  		document.getElementById("mondaiwaku").innerHTML = quizJpn + "<br>\n" + quiz;
     }　else　{
       //全文字入力していたら、終了時間を記録する
       typEnd = new Date();
@@ -115,11 +109,11 @@ function typeGame(evt) {
       var time1 = "時間：" + sec + "秒" + msec;
       //問題枠にゲーム終了コメントを表示
       if (sec > 5) {
-        document.getElementById("mondai").innerHTML = "遅いですねえ";	
+        document.getElementById("mondaiwaku").innerHTML = "遅いですねえ";	
       } else if (sec > 3) {
-        document.getElementById("mondai").innerHTML = "はやい！！";
+        document.getElementById("mondaiwaku").innerHTML = "はやい！！";
       } else {
-        document.getElementById("mondai").innerHTML = "あなたは神です👼";
+        document.getElementById("mondaiwaku").innerHTML = "あなたは神です👼";
         msec += "✨";/* 神記録の最後に絵文字つけたい　*/
       }
       // 時間とタイプミス回数を表示する
