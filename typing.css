@@ -16,7 +16,7 @@ body {
     margin: 10px auto; /*枠を中央寄せ*/
     overflow: auto;
 }
-#mondai {
+#mondaiwaku {
     font-size:30px;
     color: rgb(126, 116, 101);
 }
