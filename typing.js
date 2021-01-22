@@ -54,20 +54,20 @@ function ransu() {
 
 //タイピングゲームの問題をセットする関数
 function gameSet() {
-  //問題文とカウント数をクリアする
-  mondai = "";
-  cnt_question = 0;
-  //乱数作成関数の呼び出し
-  ransu();
-  
-  //問題文の作成（配列alphabetの要素をランダムに10文字繋げる）
-  //mondai= "" + alphabet[rnd[0]] + alphabet[rnd[1]] + … + alphabet[rnd[9]]となる
-  for (var i = 0; i < 10; i++) {
-    mondai =  mondai + alphabet[ rnd[i] ];
-  }
-  
-  //問題枠に表示する
-  document.getElementById("mondai").innerHTML = mondai;
+	//問題文とカウント数をクリアする
+  quiz = "";
+  quizJpn = "";
+	cnt_question = 0;
+	arrLength = 0;
+  //問題をランダムに選ぶ
+	quiz = chooseQuiz(proverblist);
+	quizJpn = proverbJpn[jpnIndex];
+	//選んだ問題のkclistをつくる
+	makekclist(quiz);
+	//選んだ問題の配列長（要素数）をarrLengthに格納する
+	arrLength = quiz.length;
+	//問題枠に表示する
+  document.getElementById("mondaiwaku").innerHTML = quizJpn + "<br>\n" + quiz;
 }
 
 //キー入力を受け取る関数
