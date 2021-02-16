@@ -11,8 +11,8 @@ body {
 #waku {
     background-color:white;
     border:6px double  rgb(228, 226, 222);
-    width: 500px; /* 横幅 */
-    height:200px; /* 縦幅 */
+    width: 500px;
+    height:200px;
     margin: 10px auto; /*枠を中央寄せ*/
     overflow: auto;
 }
@@ -26,11 +26,9 @@ body {
 }
 /* retryButton限定にしたい */
 button {
-    /* ブラウザ特有のスタイルを無効に */
     -moz-appearance: none;
     -webkit-appearance: none;
     appearance: none;
-    /* 整える */
     border: 0; /* 枠線を消す*/
     display: inline-block;
     font-size: 18px;
