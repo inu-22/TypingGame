@@ -78,7 +78,7 @@ function typeGame(evt) {
     //以下、キーコードが一致した時の処理    
     //最初の1文字が入力された時間を記録する
     if (cnt_question == 0)　{ 
-      typStart = new Date(); /*←これ何 */
+      typStart = new Date();
     }
     
     cnt_question++; //カウント数を＋１にする
